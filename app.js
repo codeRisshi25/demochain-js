@@ -1,9 +1,9 @@
 import crypto from 'crypto';
 
 class Block {
-    constructor (index,timestamp,data,previousHash="") {
+    constructor (index,data,previousHash="") {
         this.index = index;
-        this.timestamp = timestamp;
+        this.timestamp = Date.now();
         this.data = data;
         this.nonce = 0;
         this.previousHash = previousHash;
@@ -16,6 +16,12 @@ class Block {
     }
 }
 
-const block1 = new Block(0,2005,"meow");
-const block2 = new Block(1,2006,"weow",block1.hash);
-console.log(block1,block2)
+const block1 = new Block(0,"meow");
+const block2 = new Block(1,"weow",block1.hash);
+const block3 = new Block(2,"peow",block2.hash);
+
+console.log(
+    "block 1 : ",block1,
+    "\nblock 2 : ",block2,
+    "\nblock 3 : ",block3
+)
